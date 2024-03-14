@@ -7,6 +7,7 @@
     tools:context=".AddToCartActivity">
 
 
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"

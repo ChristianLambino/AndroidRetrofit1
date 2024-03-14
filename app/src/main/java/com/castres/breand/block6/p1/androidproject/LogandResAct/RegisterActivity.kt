@@ -1,4 +1,4 @@
-package com.castres.breand.block6.p1.androidproject
+package com.castres.breand.block6.p1.androidproject.LogandResAct
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.castres.breand.block6.p1.androidproject.MainActivity
+import com.castres.breand.block6.p1.androidproject.R
+import com.castres.breand.block6.p1.androidproject.RetrofitInstance
 import com.castres.breand.block6.p1.androidproject.dataclass.EmailCheckRequest
 import com.castres.breand.block6.p1.androidproject.dataclass.RegistrationRequest
 import kotlinx.coroutines.Dispatchers

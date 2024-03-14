@@ -1,4 +1,4 @@
-package com.castres.breand.block6.p1.androidproject
+package com.castres.breand.block6.p1.androidproject.LogandResAct
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.castres.breand.block6.p1.androidproject.R
-import com.castres.breand.block6.p1.androidproject.LogInActivity
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

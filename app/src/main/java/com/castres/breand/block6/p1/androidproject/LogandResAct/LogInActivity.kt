@@ -1,4 +1,4 @@
-package com.castres.breand.block6.p1.androidproject
+package com.castres.breand.block6.p1.androidproject.LogandResAct
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.castres.breand.block6.p1.androidproject.MainActivity
+import com.castres.breand.block6.p1.androidproject.R
+import com.castres.breand.block6.p1.androidproject.RetrofitInstance
 import com.castres.breand.block6.p1.androidproject.dataclass.LoginRequest
 import kotlinx.coroutines.launch
 
@@ -70,7 +73,7 @@ class LogInActivity : AppCompatActivity() {
         val API = RetrofitInstance.getAPI(this)
         val loginRequest = LoginRequest(email, password)
 
-        lifecycleScope.launch {
+                lifecycleScope.launch {
             try {
                 val response = API.login(loginRequest)
                 if (response.isSuccessful && response.body() != null) {

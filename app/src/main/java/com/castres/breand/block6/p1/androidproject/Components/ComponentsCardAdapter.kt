@@ -1,4 +1,4 @@
-package com.castres.breand.block6.p1.androidproject
+package com.castres.breand.block6.p1.androidproject.Components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,8 @@ import com.castres.breand.block6.p1.androidproject.databinding.ComponentsCardcel
 
 class ComponentsCardAdapter (
     private val componentsItems : List<ComponentsItems>,
-    private val clickListener: ComponentsClickListener)
+    private val clickListener: ComponentsClickListener
+)
     :RecyclerView.Adapter<ComponentsCardViewHolder>()
 
 {

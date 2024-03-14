@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:enableOnBackInvokedCallback="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
         <activity
             android:name=".AddToCartActivity"
             android:exported="true"/>
@@ -26,25 +27,19 @@
             android:name=".PartnershipsActivity"
             android:exported="true" />
         <activity
-            android:name=".ComponentsDetailActivity"
+            android:name=".Components.ComponentsDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".ComponentsActivity"
+            android:name=".Components.ComponentsActivity"
             android:exported="true" />
         <activity
-            android:name=".LogInActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".LogandResAct.LogInActivity"
+            android:exported="true"/>
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".LogandResAct.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".LogandResAct.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".NewArrivalsActivity"
