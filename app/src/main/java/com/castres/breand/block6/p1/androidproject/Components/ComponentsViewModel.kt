@@ -3,14 +3,9 @@ package com.castres.breand.block6.p1.androidproject.Components
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.castres.breand.block6.p1.androidproject.Components.ComponentRepository
-import com.castres.breand.block6.p1.androidproject.Components.ComponentsItems
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ComponentsViewModel(private val componentRepository: ComponentRepository) : ViewModel() {
 
@@ -25,10 +20,13 @@ class ComponentsViewModel(private val componentRepository: ComponentRepository) 
 
 
 
+// Inside ComponentsViewModel class
+
     fun getComponent() {
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = componentRepository.getComponent()
-            withContext(Dispatchers.Main) {
+        job = viewModelScope.launch {
+            loading.value = true
+            try {
+                val response = componentRepository.getComponent()
                 if (response.isSuccessful) {
                     val items = response.body()
                     if (items != null) {
@@ -36,13 +34,17 @@ class ComponentsViewModel(private val componentRepository: ComponentRepository) 
                     } else {
                         onError("Empty response")
                     }
-                    loading.value = false
                 } else {
-                    onError("Error : ${response.message()} ")
+                    onError("Error: ${response.message()}")
                 }
+            } catch (e: Exception) {
+                onError("Exception handled: ${e.localizedMessage}")
+            } finally {
+                loading.value = false
             }
         }
     }
+
 
 
     fun onError(message: String) {

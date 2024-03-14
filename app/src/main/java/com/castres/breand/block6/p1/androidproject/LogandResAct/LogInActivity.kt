@@ -69,8 +69,7 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser() {
-        val API = RetrofitInstance.getAPI(this)
+    private fun loginUser() { val API = RetrofitInstance.getAPI(this)
         val loginRequest = LoginRequest(email, password)
 
                 lifecycleScope.launch {

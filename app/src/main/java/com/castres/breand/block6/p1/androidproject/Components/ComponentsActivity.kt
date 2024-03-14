@@ -8,12 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.castres.breand.block6.p1.androidproject.RetrofitInstance
 import com.castres.breand.block6.p1.androidproject.data.model.modeling.API
 import com.castres.breand.block6.p1.androidproject.databinding.ActivityComponentsBinding
-import kotlinx.coroutines.launch
 
 class ComponentsActivity : AppCompatActivity(), ComponentsClickListener {
     private lateinit var binding: ActivityComponentsBinding
@@ -58,40 +56,14 @@ class ComponentsActivity : AppCompatActivity(), ComponentsClickListener {
     }
 
 
-    override fun onClick(componentsItems: ComponentsItems) {
-        val intent = Intent(applicationContext, ComponentsDetailActivity::class.java)
-        intent.putExtra(COMPONENTS_ID_EXTRA, componentsItems.id ?: -1) // Pass -1 if id is null
-        startActivity(intent)
-    }
+// Inside ComponentsActivity class
 
     private fun fetchComponents() {
-        lifecycleScope.launch {
-            try {
-                // Make the network request to fetch components
-                val response = api.getComponent()
-                if (response.isSuccessful) {
-                    val responseData = response.body() as Map<String, Any>
-                    responseData["GPU"]?.let {
-                        // Update LiveData with the fetched list
-                        componentsList.value = it as List<ComponentsItems>
-                    }
-                } else {
-                    // Handle unsuccessful response
-                    val errorMessage = "Error: ${response.message()}"
-                    viewModel.onError(errorMessage)
-                }
-            } catch (e: Exception) {
-                // Handle failure
-                val errorMessage = "Error: ${e.localizedMessage}"
-                viewModel.onError(errorMessage)
-            }
-        }
+        viewModel.getComponent()
     }
-
 
     private fun observeViewModel() {
         viewModel.componentsList.observe(this, Observer {
-            // Update adapter with new data
             componentsAdapter.setItems(it)
         })
 
@@ -107,6 +79,13 @@ class ComponentsActivity : AppCompatActivity(), ComponentsClickListener {
             }
         })
     }
+
+    override fun onClick(componentsItems: ComponentsItems) {
+        val intent = Intent(applicationContext, ComponentsDetailActivity::class.java)
+        intent.putExtra(COMPONENTS_ID_EXTRA, componentsItems.id ?: -1) // Pass -1 if id is null
+        startActivity(intent)
+    }
+
 }
 
 
